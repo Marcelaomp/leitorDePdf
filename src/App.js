@@ -54,7 +54,7 @@ function App() {
     
         var formData = new FormData();
         formData.append("arquivo", file);
-        await axios.post('http://localhost:8080/lerPDF', formData, {
+        await axios.post('https://leitor-de-pdf-back.herokuapp.com/lerPDF', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
