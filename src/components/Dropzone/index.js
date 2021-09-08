@@ -71,14 +71,14 @@ function Dropzone() {
 
     return (
         <>
-        <div className="container">
-          <Container {...getRootProps({isDragActive, isDragAccept, isDragReject})}>
-            <input {...getInputProps()} />
-            <p>Solte o pdf aqui ou clique para selecioná-lo</p>
-          </Container>
-        </div>
-        <h3>Leitura do pdf:</h3>
-        <p>{conteudo}</p>
+            <div className="container">
+                <Container {...getRootProps({isDragActive, isDragAccept, isDragReject})}>
+                    <input {...getInputProps()} />
+                    <p>Solte o pdf aqui ou clique para selecioná-lo</p>
+                </Container>
+                </div>
+                <h3>Leitura do pdf:</h3>
+            <p>{conteudo}</p>
         </>
     );
 }
