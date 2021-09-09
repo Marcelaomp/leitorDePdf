@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useDropzone} from 'react-dropzone';
 import styled from 'styled-components';
+import Context from '../../context/conteudo/index';
 const axios = require('axios');
 
 const getColor = (props) => {
@@ -16,7 +17,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 100px;
-  margin: auto 5vw auto 5vw;
   border-width: 2px;
   border-radius: 2px;
   border-color: ${props => getColor(props)};
@@ -25,10 +25,11 @@ const Container = styled.div`
   color: #bdbdbd;
   outline: none;
   transition: border .24s ease-in-out;
+  height:80vh;
 `;
 
 function Dropzone() {
-    const [conteudo, setConteudo] = useState("");
+    const { conteudo, setConteudo } = useContext(Context);
 
     const {
         getRootProps,
@@ -55,15 +56,15 @@ function Dropzone() {
             files.push(file);
 
             var formData = new FormData();
-            formData.append("arquivo", file);
-            await axios.post('https://leitor-de-pdf-back.herokuapp.com/lerPDF', formData, {
+            formData.append("file", file);
+            await axios.post('https://hml-poc-leitor-pdf.alterdatasoftware.com.br/pdf', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(function (response) {
                 setConteudo(response.data);
             }).catch(function (error) {
-                window.location.assign('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+                console.log(error)
             });
         }
         return files;
@@ -77,8 +78,6 @@ function Dropzone() {
                     <p>Solte o pdf aqui ou clique para selecioná-lo</p>
                 </Container>
                 </div>
-                <h3>Leitura do pdf:</h3>
-            <p>{conteudo}</p>
         </>
     );
 }
