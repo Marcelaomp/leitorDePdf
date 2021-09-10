@@ -4,9 +4,6 @@ import Context from '../../context/conteudo/index';
 
 const Container = styled.div`
   background-color: #fafafa;
-  height:80vh;
-  max-width:35vw;
- 
 `;
 
 function Readzone() {
