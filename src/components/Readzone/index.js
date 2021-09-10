@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 function Readzone() {
-    const { conteudo, setConteudo } = useContext(Context);
+    const { conteudo } = useContext(Context);
     return (
             <div className="container">
                 { conteudo ? renderizarExtrato(conteudo.data) : <></>}
@@ -18,7 +18,7 @@ function Readzone() {
     );
 }
 
-function renderizarExtrato(data) {
+const renderizarExtrato = (data) => {
   return (
     <Container>
       <h3>Empresa</h3>
@@ -42,7 +42,7 @@ function renderizarExtrato(data) {
           {data.lancamentos.map((lancamento, index) =>
           <tr key={index}>
             <th scope="row">{index}</th>
-            <td>{lancamento.data}</td>
+            <td>{formatarData(lancamento.dataLancamento)}</td>
             <td>{lancamento.descricao}</td>
             <td>{lancamento.valor}</td>
           </tr>
@@ -52,6 +52,12 @@ function renderizarExtrato(data) {
       </table>
     </Container>
   );
+}
+
+const formatarData = (dataLancamento) => {
+  const data = new Date(dataLancamento);
+  let dataFormatada = new Intl.DateTimeFormat('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit'}).format(data);
+  return dataFormatada;
 }
 
 export default Readzone;

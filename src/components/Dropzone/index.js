@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext } from 'react';
 import {useDropzone} from 'react-dropzone';
 import styled from 'styled-components';
 import Context from '../../context/conteudo/index';
@@ -29,7 +29,7 @@ const Container = styled.div`
 `;
 
 function Dropzone() {
-    const { conteudo, setConteudo } = useContext(Context);
+    const { setConteudo } = useContext(Context);
 
     const {
         getRootProps,
