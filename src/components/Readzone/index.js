@@ -39,7 +39,7 @@ const renderizarExtrato = (data) => {
           {data.lancamentos.map((lancamento, index) =>
           <tr key={index}>
             <th scope="row">{index}</th>
-            <td>{formatarData(lancamento.dataLancamento)}</td>
+            <td>{formatarData(lancamento.data)}</td>
             <td>{lancamento.descricao}</td>
             <td>{lancamento.valor}</td>
           </tr>
