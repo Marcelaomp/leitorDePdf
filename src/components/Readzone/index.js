@@ -6,6 +6,10 @@ const Container = styled.div`
   background-color: #fafafa;
 `;
 
+const ValorSaida = styled.td`
+  color: red;
+`;
+
 function Readzone() {
     const { conteudo } = useContext(Context);
     return (
@@ -33,6 +37,7 @@ const renderizarExtrato = (data) => {
             <th scope="col">Data</th>
             <th scope="col">Descrição</th>
             <th scope="col">Valor</th>
+            <th scope="col">Tipo</th>
           </tr>
         </thead>
         <tbody>
@@ -41,7 +46,8 @@ const renderizarExtrato = (data) => {
             <th scope="row">{index}</th>
             <td>{formatarData(lancamento.data)}</td>
             <td>{lancamento.descricao}</td>
-            <td>{lancamento.valor}</td>
+            {lancamento.tipo == "Entrada"? <td>{formatarValor(lancamento.valor)}</td> : <ValorSaida>{formatarValor(lancamento.valor)}</ValorSaida>}
+            <td>{lancamento.tipo.replace("i", "í")}</td>
           </tr>
           )
           }
@@ -55,6 +61,10 @@ const formatarData = (dataLancamento) => {
   const data = new Date(dataLancamento);
   let dataFormatada = new Intl.DateTimeFormat('pt-BR', {year:'numeric', month:'2-digit', day:'2-digit'}).format(data);
   return dataFormatada;
+}
+
+const formatarValor = (valor) => {
+  return valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
 }
 
 export default Readzone;
