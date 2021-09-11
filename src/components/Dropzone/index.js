@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {useDropzone} from 'react-dropzone';
 import styled from 'styled-components';
 import Context from '../../context/conteudo/index';
+
 const axios = require('axios');
 
 const getColor = (props) => {
@@ -26,6 +27,10 @@ const Container = styled.div`
   outline: none;
   transition: border .24s ease-in-out;
   height:80vh;
+`;
+
+const Mensagem = styled.div`
+    height: "80vh";
 `;
 
 function Dropzone() {
@@ -63,19 +68,30 @@ function Dropzone() {
                 }
             }).then(function (response) {
                 setConteudo(response.data);
-            }).catch(function (error) {
-                console.log(error)
+            }).catch(function () {
+                setConteudo(
+                    {
+                        tipo:"alert-danger",
+                        mensagem:<>Formato do arquivo não suportado.<br/>Inserir apenas arquivos no formato pdf.</>
+                    }
+                );
             });
         }
         return files;
     }
+
+    
 
     return (
         <>
             <div className="container">
                 <Container {...getRootProps({isDragActive, isDragAccept, isDragReject})}>
                     <input {...getInputProps()} />
-                    <p>Solte o pdf aqui ou clique para selecioná-lo</p>
+                    <Mensagem className="row" style={{height: "80vh"}}>
+                        <div className="col d-inline-flex align-items-center justify-content-center">
+                            <p>Solte o pdf aqui ou clique para selecioná-lo</p>
+                        </div>
+                    </Mensagem>
                 </Container>
                 </div>
         </>

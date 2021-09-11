@@ -3,7 +3,11 @@ import React, {createContext, useState} from "react";
 const Context = createContext();
 
 const ContextProvider = ({children}) => {
-    const [conteudo, setConteudo] = useState();
+    const [conteudo, setConteudo] = useState({
+        tipo:"alert-info",
+        mensagem:<>Seu extrato aparecerá aqui.</>
+    });
+
     return (
         <Context.Provider 
             value={{   
