@@ -1,4 +1,3 @@
-import logo from '../../assets/img/icone_pdf.png'
 function NavBar() {
     return (
       <>
